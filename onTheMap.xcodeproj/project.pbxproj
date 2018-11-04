@@ -16,6 +16,9 @@
 		A0DB9C1C218E92CD00F2F23E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C1B218E92CD00F2F23E /* MapViewController.swift */; };
 		A0DB9C1E218EA68C00F2F23E /* ViewController+ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C1D218EA68C00F2F23E /* ViewController+ActivityView.swift */; };
 		A0DB9C22218F298900F2F23E /* UdacityUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C21218F298900F2F23E /* UdacityUser.swift */; };
+		A0DB9C25218F4F9400F2F23E /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C24218F4F9400F2F23E /* ParseClient.swift */; };
+		A0DB9C27218F56B000F2F23E /* ParseStudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C26218F56B000F2F23E /* ParseStudentLocation.swift */; };
+		A0DB9C29218F7FC700F2F23E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C28218F7FC700F2F23E /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		A0DB9C1B218E92CD00F2F23E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A0DB9C1D218EA68C00F2F23E /* ViewController+ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ActivityView.swift"; sourceTree = "<group>"; };
 		A0DB9C21218F298900F2F23E /* UdacityUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityUser.swift; sourceTree = "<group>"; };
+		A0DB9C24218F4F9400F2F23E /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		A0DB9C26218F56B000F2F23E /* ParseStudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStudentLocation.swift; sourceTree = "<group>"; };
+		A0DB9C28218F7FC700F2F23E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 			children = (
 				A0DB9C17218E621E00F2F23E /* LoginViewController.swift */,
 				A0DB9C1B218E92CD00F2F23E /* MapViewController.swift */,
+				A0DB9C28218F7FC700F2F23E /* TableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -113,6 +120,7 @@
 		A0DB9C1F218F295D00F2F23E /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				A0DB9C23218F4F7E00F2F23E /* Parse */,
 				A0DB9C20218F296600F2F23E /* Udacity */,
 			);
 			path = Clients;
@@ -125,6 +133,15 @@
 				A0DB9C21218F298900F2F23E /* UdacityUser.swift */,
 			);
 			path = Udacity;
+			sourceTree = "<group>";
+		};
+		A0DB9C23218F4F7E00F2F23E /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				A0DB9C24218F4F9400F2F23E /* ParseClient.swift */,
+				A0DB9C26218F56B000F2F23E /* ParseStudentLocation.swift */,
+			);
+			path = Parse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,11 +215,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0DB9C27218F56B000F2F23E /* ParseStudentLocation.swift in Sources */,
 				A0DB9C18218E621E00F2F23E /* LoginViewController.swift in Sources */,
 				A0DB9C1E218EA68C00F2F23E /* ViewController+ActivityView.swift in Sources */,
+				A0DB9C25218F4F9400F2F23E /* ParseClient.swift in Sources */,
 				A0DB9C22218F298900F2F23E /* UdacityUser.swift in Sources */,
 				A0DB9C02218E52D900F2F23E /* AppDelegate.swift in Sources */,
 				A0DB9C1A218E655300F2F23E /* UdacityClient.swift in Sources */,
+				A0DB9C29218F7FC700F2F23E /* TableViewController.swift in Sources */,
 				A0DB9C1C218E92CD00F2F23E /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
