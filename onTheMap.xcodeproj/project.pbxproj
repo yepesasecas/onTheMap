@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0AC4D2221914FAF006EE9F8 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AC4D2121914FAF006EE9F8 /* InformationPostingViewController.swift */; };
 		A0DB9C02218E52D900F2F23E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C01218E52D900F2F23E /* AppDelegate.swift */; };
 		A0DB9C07218E52D900F2F23E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0DB9C05218E52D900F2F23E /* Main.storyboard */; };
 		A0DB9C09218E52DB00F2F23E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0DB9C08218E52DB00F2F23E /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A0AC4D2121914FAF006EE9F8 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
 		A0DB9BFE218E52D900F2F23E /* onTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = onTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0DB9C01218E52D900F2F23E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0DB9C06218E52D900F2F23E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				A0DB9C17218E621E00F2F23E /* LoginViewController.swift */,
 				A0DB9C1B218E92CD00F2F23E /* MapViewController.swift */,
 				A0DB9C28218F7FC700F2F23E /* TableViewController.swift */,
+				A0AC4D2121914FAF006EE9F8 /* InformationPostingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				A0DB9C25218F4F9400F2F23E /* ParseClient.swift in Sources */,
 				A0DB9C22218F298900F2F23E /* UdacityUser.swift in Sources */,
 				A0DB9C02218E52D900F2F23E /* AppDelegate.swift in Sources */,
+				A0AC4D2221914FAF006EE9F8 /* InformationPostingViewController.swift in Sources */,
 				A0DB9C1A218E655300F2F23E /* UdacityClient.swift in Sources */,
 				A0DB9C29218F7FC700F2F23E /* TableViewController.swift in Sources */,
 				A0DB9C1C218E92CD00F2F23E /* MapViewController.swift in Sources */,
@@ -372,6 +376,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9BZ568JFC6;
 				INFOPLIST_FILE = onTheMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,6 +395,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9BZ568JFC6;
 				INFOPLIST_FILE = onTheMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

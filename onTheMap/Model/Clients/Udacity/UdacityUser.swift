@@ -14,6 +14,7 @@ class UdacityUser: NSObject {
     var id: String? = nil
     
     init(dictionary: [String: AnyObject?]) {
+        print(dictionary)
         if let userData = dictionary["user"] as? [String: AnyObject?],
            let TFirstName = userData["first_name"] as? String,
            let TLastName = userData["last_name"] as? String,

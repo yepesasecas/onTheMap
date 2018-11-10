@@ -53,7 +53,8 @@ class UdacityClient: NSObject {
                     self.sessionID = sessionId
                     self.userID = accountKey
                     print("current User session: \(self.sessionID!)")
-                    completionHandler(true, "\(accountKey)---\(sessionId)")
+                    print("current User id: \(self.userID!)")
+                    completionHandler(true, "")
                     return
             }
             

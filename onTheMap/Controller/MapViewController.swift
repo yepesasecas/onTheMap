@@ -12,19 +12,17 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    var currentAnnotations: [MKPointAnnotation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ParseClient.sharedInstance().getStudentLocations(limit: 100){ (success, studentLocations, error) in
-            DispatchQueue.main.async {
-                if success {
-                    self.updateMap(studentLocations: studentLocations as! [ParseStudentLocation])
-                }
-                else {
-                    self.displayMessage(message: error!)
-                }
-            }
-        }
+        loadMapAnnotations()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mapView.removeAnnotations(self.currentAnnotations)
+        self.updateMap(studentLocations: ParseClient.sharedInstance().studentLocations)
     }
     
     @IBAction func logout(_ sender: Any) {
@@ -43,6 +41,32 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    @IBAction func refresh(_ sender: Any) {
+        mapView.removeAnnotations(self.currentAnnotations)
+        loadMapAnnotations()
+    }
+    
+    @IBAction func addLocation(_ sender: Any) {
+        //TODO
+    }
+    
+    // Mark: Functions
+    
+    func loadMapAnnotations() -> Void {
+        let activityView = UIViewController.displaySpinner(onView: self.view)
+        ParseClient.sharedInstance().getStudentLocations(limit: 100){ (success, studentLocations, error) in
+            DispatchQueue.main.async {
+                UIViewController.removeSpinner(spinner: activityView)
+                if success {
+                    self.updateMap(studentLocations: studentLocations as! [ParseStudentLocation])
+                }
+                else {
+                    self.displayMessage(message: error!)
+                }
+            }
+        }
+    }
+    
     func updateMap(studentLocations: [ParseStudentLocation]) -> Void {
         studentLocations.forEach() { (sl) in
             let studentLocation = sl as ParseStudentLocation
@@ -50,12 +74,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotation.coordinate = CLLocationCoordinate2D(latitude: studentLocation.latitude ?? 0, longitude: studentLocation.longitude ?? 0)
             annotation.title = "\(studentLocation.firstName ?? "") \(studentLocation.lastName ?? "")"
             annotation.subtitle = "\(studentLocation.mediaURL ?? "")"
-            
+            currentAnnotations.append(annotation)
             mapView.addAnnotation(annotation)
         }
     }
-    
-    // Mark: Helpers
     
     func displayMessage(message: String) -> Void {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
