@@ -12,16 +12,23 @@ class UdacityUser: NSObject {
     var firstName: String? = nil
     var lastName: String? = nil
     var id: String? = nil
+    var nickname: String? = nil
     
     init(dictionary: [String: AnyObject?]) {
         print(dictionary)
         if let userData = dictionary["user"] as? [String: AnyObject?],
            let TFirstName = userData["first_name"] as? String,
            let TLastName = userData["last_name"] as? String,
-           let TUserID = userData["key"] as? String {
+           let TUserID = userData["key"] as? String,
+           let TNickname = userData["nickname"] as? String {
             self.firstName = TFirstName
             self.lastName = TLastName
             self.id = TUserID
+            self.nickname = TNickname
         }
+    }
+    
+    func name() -> String {
+        return firstName ?? nickname ?? "no available name"
     }
 }

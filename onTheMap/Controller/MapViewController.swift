@@ -46,10 +46,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         loadMapAnnotations()
     }
     
-    @IBAction func addLocation(_ sender: Any) {
-        //TODO
-    }
-    
     // Mark: Functions
     
     func loadMapAnnotations() -> Void {
@@ -85,6 +81,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func verifyUrl(urlString: String) -> Bool {
+        if let url = URL(string: urlString) {
+            return UIApplication.shared.canOpenURL(url)
+        }
+        return false
+    }
+    
     // Mark: MKMapViewDelegate
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -108,7 +111,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
-            if let toOpen = view.annotation?.subtitle! {
+            if let toOpen = view.annotation?.subtitle!, verifyUrl(urlString: toOpen) {
                 app.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
             }
         }

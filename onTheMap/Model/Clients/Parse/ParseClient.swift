@@ -11,8 +11,6 @@ import UIKit
 class ParseClient: NSObject {
     // MARK: Properties
     var studentLocations: [ParseStudentLocation] = []
-    
-    // shared session
     var session = URLSession.shared
     
     // MARK: Initializers
@@ -20,6 +18,8 @@ class ParseClient: NSObject {
     override init() {
         super.init()
     }
+    
+    // MARK: Public
     
     func getStudentLocations(limit: Int, completionHandler: @escaping (_ success: Bool, _ studentLocations: AnyObject?, _ error: String?)-> Void) -> Void {
         var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=\(limit)&order=-updatedAt")!)
@@ -48,6 +48,23 @@ class ParseClient: NSObject {
             self.studentLocations = ParseStudentLocation.parseDataToStudentLocations(dictionary: parsedData as! [String : AnyObject?])
             completionHandler(true, self.studentLocations as AnyObject, nil)
             
+        }
+        task.resume()
+    }
+    
+    func createStudentLocation(studentLocation: ParseStudentLocation, completionHandler: @escaping (_ success: Bool, _ studentLocations: AnyObject?, _ error: String?)-> Void) -> Void {
+        var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
+        request.httpMethod = "POST"
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".data(using: .utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if error != nil {
+                return
+            }
+            print(String(data: data!, encoding: .utf8)!)
         }
         task.resume()
     }

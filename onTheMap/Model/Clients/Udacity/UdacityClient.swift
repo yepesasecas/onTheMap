@@ -79,8 +79,6 @@ class UdacityClient: NSObject {
                 completionHandler(false, "unable to logout. try again.")
                 return
             }
-            let range = Range(5..<data!.count)
-            let newData = data?.subdata(in: range) /* subset response data! */
             print("logout session: \(self.sessionID!)")
             completionHandler(true, nil)
         }
@@ -94,7 +92,9 @@ class UdacityClient: NSObject {
                 return
             }
             self.currentUser = UdacityUser.init(dictionary: parsedData as! [String : AnyObject?])
-            print("current User: \(self.currentUser!.firstName!) \(self.currentUser!.id!)")
+            print("current User name: \(self.currentUser!.name())")
+            print("current User id: \(self.currentUser!.id ?? "")")
+
             completionHandler(true, nil)
         }
         task.resume()
@@ -112,7 +112,7 @@ class UdacityClient: NSObject {
             return nil
         }
         
-        let range = Range(5..<data.count)
+        let range = 5..<data.count
         let newData = data.subdata(in: range) /* subset response data! */
         
         var parsedData: AnyObject! = nil
