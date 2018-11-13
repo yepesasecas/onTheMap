@@ -22,13 +22,13 @@ class InformationPostingViewController: UIViewController {
     
     @IBAction func findLocation(_ sender: Any) {
         
-        guard let urlString = self.websiteTextField.text, self.verifyUrl(urlString: urlString) else {
-            self.displayMessage(message: "Invalid URL. add http://...")
+        guard let urlString = self.websiteTextField.text, Helper.app.verifyUrl(urlString: urlString) else {
+            Helper.app.displayMessage(message: "Invalid URL. add http://...", vc: self)
             return
         }
         
         guard let locationString = self.locationTextField.text, locationString != "" else {
-            self.displayMessage(message: "Location Empty")
+            Helper.app.displayMessage(message: "Location Empty", vc: self)
             return
         }
         
@@ -41,7 +41,7 @@ class InformationPostingViewController: UIViewController {
             DispatchQueue.main.async {
                 if error != nil {
                     print("geocoder error: \(String(describing: error))")
-                    self.displayMessage(message: "Unable to find location")
+                    Helper.app.displayMessage(message: "Unable to find location", vc: self)
                     return
                 }
                 
@@ -52,25 +52,9 @@ class InformationPostingViewController: UIViewController {
             }
         }
     }
+    
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    
-    // Mark: - Helpers
-    
-    func displayMessage(message: String) -> Void {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: "Default action"), style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func verifyUrl(urlString: String?) -> Bool {
-        if let urlString = urlString {
-            if let url = URL(string: urlString) {
-                return UIApplication.shared.canOpenURL(url)
-            }
-        }
-        return false
-    }
 }

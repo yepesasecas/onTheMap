@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     @IBAction func logIn(_ sender: Any) {
         guard let email = emailTextField.text, email != "",
               let password = passwordTextField.text, password != ""  else {
-            displayMessage(message: "Empty Email or Password.")
+                Helper.app.displayMessage(message: "Empty Email or Password.", vc: self)
             return
         }
         
@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
                     self.getCurrentUser()
                 }
                 else {
-                    self.displayMessage(message: error!)
+                    Helper.app.displayMessage(message: error!, vc: self)
                 }
             }
         }
@@ -46,13 +46,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // Mark: Helpers
-    
-    func displayMessage(message: String) -> Void {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: "Default action"), style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
+    // Mark: Function
     
     func getCurrentUser() -> Void {
         let activityView = UIViewController.displaySpinner(onView: self.view)
@@ -64,7 +58,7 @@ class LoginViewController: UIViewController {
                     self.present(controller, animated: true, completion: nil)
                 }
                 else{
-                    self.displayMessage(message: error!)
+                    Helper.app.displayMessage(message: error!, vc: self)
                 }
             }
         }

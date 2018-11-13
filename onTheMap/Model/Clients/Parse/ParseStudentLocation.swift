@@ -60,7 +60,8 @@ class ParseStudentLocation: NSObject {
     
     func json() -> Data? {
         do {
-            return try JSONSerialization.data(withJSONObject: self.dict(), options: .sortedKeys)
+            let data = try JSONSerialization.data(withJSONObject: self.dict(), options: .sortedKeys)
+            return data
         }
         catch  {
             return nil

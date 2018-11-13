@@ -35,7 +35,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     self.present(loginViewController, animated: true, completion: nil)
                 }
                 else{
-                    self.displayMessage(message: error!)
+                    Helper.app.displayMessage(message: error!, vc: self)
                 }
             }
         }
@@ -57,7 +57,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     self.updateMap(studentLocations: studentLocations as! [ParseStudentLocation])
                 }
                 else {
-                    self.displayMessage(message: error!)
+                    Helper.app.displayMessage(message: error!, vc: self)
                 }
             }
         }
@@ -73,19 +73,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             currentAnnotations.append(annotation)
             mapView.addAnnotation(annotation)
         }
-    }
-    
-    func displayMessage(message: String) -> Void {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: "Default action"), style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func verifyUrl(urlString: String) -> Bool {
-        if let url = URL(string: urlString) {
-            return UIApplication.shared.canOpenURL(url)
-        }
-        return false
     }
     
     // Mark: MKMapViewDelegate
@@ -111,7 +98,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
-            if let toOpen = view.annotation?.subtitle!, verifyUrl(urlString: toOpen) {
+            if let toOpen = view.annotation?.subtitle!, Helper.app.verifyUrl(urlString: toOpen) {
                 app.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
             }
         }

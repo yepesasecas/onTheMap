@@ -22,12 +22,17 @@ class ParseClient: NSObject {
     // MARK: Public
     
     func getStudentLocations(limit: Int, completionHandler: @escaping (_ success: Bool, _ studentLocations: AnyObject?, _ error: String?)-> Void) -> Void {
-        var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=\(limit)&order=-updatedAt")!)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        
+        let parameters: [String: String] = [
+            ParseConstants.ParameterKey.limit: "\(limit)",
+            ParseConstants.ParameterKey.order: ParseConstants.ParameterValue.updatedAt
+        ]
+        let request = createURLRequest(method: ParseConstants.Method.get, path: ParseConstants.Path.studentLocation, parameters: parameters)
+        
         let session = URLSession.shared
+        
         let task = session.dataTask(with: request) { data, response, error in
-            if error != nil { // Handle error...
+            if error != nil {
                 return
             }
             
@@ -53,11 +58,9 @@ class ParseClient: NSObject {
     }
     
     func createStudentLocation(studentLocation: ParseStudentLocation, completionHandler: @escaping (_ success: Bool, _ error: String?)-> Void) -> Void {
-        var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
-        request.httpMethod = "POST"
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let parameters: [String:String] = [:]
+        var request = createURLRequest(method: ParseConstants.Method.post , path: ParseConstants.Path.studentLocation, parameters: parameters)
+        request.addValue(ParseConstants.HeaderValue.applicationJson, forHTTPHeaderField: ParseConstants.HeaderKey.contentType)
         
         guard let json = studentLocation.json() else {
             print("unable to serialize objct to json")
@@ -82,6 +85,28 @@ class ParseClient: NSObject {
         }
         task.resume()
     }
+    
+    // MARK: - Functions
+    
+    func createURLRequest(method: String , path: String , parameters: [String:String]) -> URLRequest {
+        var components = URLComponents()
+        components.scheme = ParseConstants.URL.Scheme
+        components.host = ParseConstants.URL.Host
+        components.path = ParseConstants.Path.studentLocation
+        components.queryItems = [URLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = URLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        
+        var request = URLRequest(url: components.url!)
+        request.httpMethod = method
+        request.addValue(ParseConstants.AppID.value, forHTTPHeaderField: ParseConstants.AppID.key)
+        request.addValue(ParseConstants.ApiKey.value, forHTTPHeaderField: ParseConstants.ApiKey.key)
+        return request
+    }
+   
     
     // MARK: Shared Instance
     

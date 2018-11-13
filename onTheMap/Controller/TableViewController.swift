@@ -27,9 +27,6 @@ class TableViewController: UITableViewController {
         loadTableAnnotations()
     }
     
-    @IBAction func addLocation(_ sender: Any) {
-    }
-    
     @IBAction func logout(_ sender: Any) {
         let activityView = UIViewController.displaySpinner(onView: self.view)
         UdacityClient.sharedInstance().logout() {(success, error) in
@@ -40,11 +37,12 @@ class TableViewController: UITableViewController {
                     self.present(loginViewController, animated: true, completion: nil)
                 }
                 else{
-                    self.displayMessage(message: error!)
+                    Helper.app.displayMessage(message: error!, vc: self)
                 }
             }
         }
     }
+    
     // MARK: - Functions
     
     func loadTableAnnotations() -> Void {
@@ -56,16 +54,10 @@ class TableViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
                 else {
-                    self.displayMessage(message: error!)
+                    Helper.app.displayMessage(message: error!, vc: self)
                 }
             }
         }
-    }
-    
-    func displayMessage(message: String) -> Void {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: "Default action"), style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -87,4 +79,9 @@ class TableViewController: UITableViewController {
         
         return cell
     }
+
+    //TODO
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        <#code#>
+//    }
 }

@@ -57,6 +57,7 @@ class PostingConfirmationViewController: UIViewController, MKMapViewDelegate {
                 UIViewController.removeSpinner(spinner: activityView)
                 if(error != nil) {
                     print("error: \(String(describing: error))")
+                    Helper.app.displayMessage(message: "unable to create Student Location.", vc: self)
                 }
                 
                 if(success) {

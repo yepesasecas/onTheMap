@@ -21,6 +21,8 @@
 		A0DB9C25218F4F9400F2F23E /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C24218F4F9400F2F23E /* ParseClient.swift */; };
 		A0DB9C27218F56B000F2F23E /* ParseStudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C26218F56B000F2F23E /* ParseStudentLocation.swift */; };
 		A0DB9C29218F7FC700F2F23E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DB9C28218F7FC700F2F23E /* TableViewController.swift */; };
+		A0F1B53F219A730500F95041 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F1B53E219A730500F95041 /* Helper.swift */; };
+		A0F1B541219A77D800F95041 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F1B540219A77D800F95041 /* ParseConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		A0DB9C24218F4F9400F2F23E /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		A0DB9C26218F56B000F2F23E /* ParseStudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStudentLocation.swift; sourceTree = "<group>"; };
 		A0DB9C28218F7FC700F2F23E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		A0F1B53E219A730500F95041 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		A0F1B540219A77D800F95041 /* ParseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 				A0DB9C28218F7FC700F2F23E /* TableViewController.swift */,
 				A0AC4D2121914FAF006EE9F8 /* InformationPostingViewController.swift */,
 				A0AF14EE2198864400AECC3D /* PostingConfirmationViewController.swift */,
+				A0F1B53E219A730500F95041 /* Helper.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 			children = (
 				A0DB9C24218F4F9400F2F23E /* ParseClient.swift */,
 				A0DB9C26218F56B000F2F23E /* ParseStudentLocation.swift */,
+				A0F1B540219A77D800F95041 /* ParseConstants.swift */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -229,9 +235,11 @@
 				A0DB9C02218E52D900F2F23E /* AppDelegate.swift in Sources */,
 				A0AC4D2221914FAF006EE9F8 /* InformationPostingViewController.swift in Sources */,
 				A0DB9C1A218E655300F2F23E /* UdacityClient.swift in Sources */,
+				A0F1B541219A77D800F95041 /* ParseConstants.swift in Sources */,
 				A0DB9C29218F7FC700F2F23E /* TableViewController.swift in Sources */,
 				A0AF14EF2198864400AECC3D /* PostingConfirmationViewController.swift in Sources */,
 				A0DB9C1C218E92CD00F2F23E /* MapViewController.swift in Sources */,
+				A0F1B53F219A730500F95041 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
