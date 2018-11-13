@@ -9,6 +9,7 @@
 import UIKit
 
 class ParseClient: NSObject {
+    
     // MARK: Properties
     var studentLocations: [ParseStudentLocation] = []
     var session = URLSession.shared

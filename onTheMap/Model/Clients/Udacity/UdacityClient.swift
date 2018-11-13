@@ -26,7 +26,7 @@ class UdacityClient: NSObject {
         super.init()
     }
 
-    // MARK: functions
+    // MARK: Public
     
     func login(email: String, password: String, completionHandler: @escaping (_ result: Bool, _ error: String?) -> Void) -> Void {
         var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
@@ -99,6 +99,8 @@ class UdacityClient: NSObject {
         }
         task.resume()
     }
+    
+    // MARK: - private
     
     func parseData(data: Data?, response: URLResponse?, error: Error?, completionHandler: @escaping (_ result: Bool, _ error: String?) -> Void) -> AnyObject? {
         if error != nil {

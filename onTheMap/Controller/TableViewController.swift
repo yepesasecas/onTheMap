@@ -10,8 +10,6 @@ import UIKit
 
 class TableViewController: UITableViewController {
 
-    var studentLocations: [ParseStudentLocation] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -80,8 +78,10 @@ class TableViewController: UITableViewController {
         return cell
     }
 
-    //TODO
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let studentLocation = ParseClient.sharedInstance().studentLocations[indexPath.row]
+        if let mediaURL = studentLocation.mediaURL, Helper.app.verifyUrl(urlString: mediaURL) {
+            UIApplication.shared.open(URL(string: mediaURL)!, options: [:], completionHandler: nil)
+        }
+    }
 }
