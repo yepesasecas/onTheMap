@@ -10,19 +10,19 @@ import UIKit
 
 class ParseStudentLocation: NSObject {
     
-    let objectId: String
-    let uniqueKey: String?
+    var objectId: String?
+    var uniqueKey: String?
     var firstName: String?
-    let lastName: String?
-    let mapString: String?
-    let mediaURL: String?
-    let latitude: Double?
-    let longitude: Double?
-    let createdAt: String?
-    let updatedAt: String?
+    var lastName: String?
+    var mapString: String?
+    var mediaURL: String?
+    var latitude: Double?
+    var longitude: Double?
+    var createdAt: String?
+    var updatedAt: String?
     
     init(dictionary: [String: AnyObject?]) {
-        objectId = dictionary["objectId"] as! String
+        objectId = dictionary["objectId"] as? String
         uniqueKey = dictionary["uniqueKey"] as? String
         firstName = dictionary["firstName"] as? String
         lastName = dictionary["lastName"] as? String
@@ -33,6 +33,41 @@ class ParseStudentLocation: NSObject {
         createdAt = dictionary["createdAt"] as? String
         updatedAt = dictionary["updatedAt"] as? String
     }
+    
+    init(uniqueKey: String, firstName: String, lastName: String, mapString: String, mediaURL: String, latitude: Double, longitude: Double) {
+        self.uniqueKey = uniqueKey
+        self.firstName = firstName
+        self.lastName = lastName
+        self.mapString = mapString
+        self.mediaURL = mediaURL
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    // MARK: - functions
+    
+    func dict() -> [String:AnyObject?] {
+        return [
+            "uniqueKey": uniqueKey as AnyObject,
+            "firstName": firstName as AnyObject,
+            "lastName": lastName as AnyObject,
+            "mapString": mapString as AnyObject,
+            "mediaURL": mediaURL as AnyObject,
+            "latitude": latitude as AnyObject,
+            "longitude": longitude as AnyObject
+        ]
+    }
+    
+    func json() -> Data? {
+        do {
+            return try JSONSerialization.data(withJSONObject: self.dict(), options: .sortedKeys)
+        }
+        catch  {
+            return nil
+        }
+    }
+    
+    // MARK: - Class functions
     
     class func parseDataToStudentLocations(dictionary: [String: AnyObject?]) -> [ParseStudentLocation] {
         var studentLocations = [ParseStudentLocation]()

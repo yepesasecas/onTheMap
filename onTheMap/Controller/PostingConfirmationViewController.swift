@@ -15,6 +15,7 @@ class PostingConfirmationViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     var placemark : CLPlacemark?
+    var mediaURL : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,44 @@ class PostingConfirmationViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func finish(_ sender: Any) {
-    
-        print("finish")
+        
+        guard let currentUser = UdacityClient.sharedInstance().currentUser else {
+            print("UdacityClient.sharedInstance().currentUser is nil")
+            return
+        }
+        
+        guard let placemark = placemark else {
+            print("placemark is nil")
+            return
+        }
+        
+        guard let mediaURL = mediaURL else {
+            print("mediaURL is nil")
+            return
+        }
+        
+        let studentLocation = ParseStudentLocation(uniqueKey: currentUser.id ?? "",
+                                                   firstName: currentUser.firstName ?? "",
+                                                   lastName: currentUser.lastName ?? "",
+                                                   mapString: placemark.name ?? "",
+                                                   mediaURL: mediaURL,
+                                                   latitude: placemark.location?.coordinate.latitude ?? 0,
+                                                   longitude: placemark.location?.coordinate.longitude ?? 0)
+        
+        let activityView = UIViewController.displaySpinner(onView: self.view)
+        ParseClient.sharedInstance().createStudentLocation(studentLocation: studentLocation) { success, error in
+            DispatchQueue.main.async {
+                UIViewController.removeSpinner(spinner: activityView)
+                if(error != nil) {
+                    print("error: \(String(describing: error))")
+                }
+                
+                if(success) {
+                    print("success")
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
         
     }
     

@@ -47,6 +47,7 @@ class InformationPostingViewController: UIViewController {
                 
                 let postingConfirmationVC = self.storyboard?.instantiateViewController(withIdentifier: "postingConfirmation") as! PostingConfirmationViewController
                 postingConfirmationVC.placemark = placemarks?.first
+                postingConfirmationVC.mediaURL = urlString
                 self.navigationController?.pushViewController(postingConfirmationVC, animated: true)
             }
         }
