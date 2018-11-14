@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A02BDF71219BB80200D8334E /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02BDF70219BB80200D8334E /* StudentInformation.swift */; };
 		A0AC4D2221914FAF006EE9F8 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AC4D2121914FAF006EE9F8 /* InformationPostingViewController.swift */; };
 		A0AF14ED2197D8BE00AECC3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0AF14EC2197D8BE00AECC3D /* Assets.xcassets */; };
 		A0AF14EF2198864400AECC3D /* PostingConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AF14EE2198864400AECC3D /* PostingConfirmationViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A02BDF70219BB80200D8334E /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		A0AC4D2121914FAF006EE9F8 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
 		A0AF14EC2197D8BE00AECC3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0AF14EE2198864400AECC3D /* PostingConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingConfirmationViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				A0DB9C23218F4F7E00F2F23E /* Parse */,
 				A0DB9C20218F296600F2F23E /* Udacity */,
+				A02BDF70219BB80200D8334E /* StudentInformation.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A02BDF71219BB80200D8334E /* StudentInformation.swift in Sources */,
 				A0DB9C27218F56B000F2F23E /* ParseStudentLocation.swift in Sources */,
 				A0DB9C18218E621E00F2F23E /* LoginViewController.swift in Sources */,
 				A0DB9C1E218EA68C00F2F23E /* ViewController+ActivityView.swift in Sources */,

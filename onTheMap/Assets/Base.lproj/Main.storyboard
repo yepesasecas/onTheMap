@@ -33,13 +33,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="38.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="caV-Uf-Owb">
                                                 <rect key="frame" x="0.0" y="46.5" width="240" height="39"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUp-g5-AkE">
                                                 <rect key="frame" x="0.0" y="93.5" width="240" height="38.5"/>
@@ -340,13 +340,13 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="C0E-YO-zOi">
+                            <barButtonItem image="icon_addpin" id="C0E-YO-zOi">
                                 <connections>
                                     <action selector="addLocation:" destination="cD5-dw-n8Y" id="Aid-l9-b4N"/>
                                     <segue destination="YKu-Ok-tMB" kind="presentation" id="XSv-U4-v9D"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="refresh" id="vPO-c3-j3T">
+                            <barButtonItem image="icon_refresh" id="vPO-c3-j3T">
                                 <connections>
                                     <action selector="refresh:" destination="cD5-dw-n8Y" id="MDL-8b-wWN"/>
                                 </connections>
@@ -430,6 +430,6 @@
         <image name="logo-u" width="62" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JiF-Tu-7Fi"/>
+        <segue reference="XSv-U4-v9D"/>
     </inferredMetricsTieBreakers>
 </document>

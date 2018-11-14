@@ -11,7 +11,6 @@ import UIKit
 class ParseClient: NSObject {
     
     // MARK: Properties
-    var studentLocations: [ParseStudentLocation] = []
     var session = URLSession.shared
     
     // MARK: Initializers
@@ -51,8 +50,8 @@ class ParseClient: NSObject {
                 return
             }
             
-            self.studentLocations = ParseStudentLocation.parseDataToStudentLocations(dictionary: parsedData as! [String : AnyObject?])
-            completionHandler(true, self.studentLocations as AnyObject, nil)
+            let studentLocations = ParseStudentLocation.parseDataToStudentLocations(dictionary: parsedData as! [String : AnyObject?])
+            completionHandler(true, studentLocations as AnyObject, nil)
             
         }
         task.resume()

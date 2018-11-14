@@ -22,7 +22,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         mapView.removeAnnotations(self.currentAnnotations)
-        self.updateMap(studentLocations: ParseClient.sharedInstance().studentLocations)
+        self.updateMap(studentLocations: StudentInformation.sharedInstance().studentsInformation)
     }
     
     @IBAction func logout(_ sender: Any) {
@@ -31,8 +31,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 UIViewController.removeSpinner(spinner: activityView)
                 if success {
-                    let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginView") as! LoginViewController
-                    self.present(loginViewController, animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
                 else{
                     Helper.app.displayMessage(message: error!, vc: self)
@@ -54,6 +53,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             DispatchQueue.main.async {
                 UIViewController.removeSpinner(spinner: activityView)
                 if success {
+                    StudentInformation.sharedInstance().studentsInformation = studentLocations as! [ParseStudentLocation]
                     self.updateMap(studentLocations: studentLocations as! [ParseStudentLocation])
                 }
                 else {

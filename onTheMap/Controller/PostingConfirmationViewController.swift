@@ -61,7 +61,6 @@ class PostingConfirmationViewController: UIViewController, MKMapViewDelegate {
                 }
                 
                 if(success) {
-                    print("success")
                     self.dismiss(animated: true, completion: nil)
                 }
             }

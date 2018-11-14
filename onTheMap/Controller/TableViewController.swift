@@ -31,8 +31,7 @@ class TableViewController: UITableViewController {
             DispatchQueue.main.async {
                 UIViewController.removeSpinner(spinner: activityView)
                 if success {
-                    let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginView") as! LoginViewController
-                    self.present(loginViewController, animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
                 else{
                     Helper.app.displayMessage(message: error!, vc: self)
@@ -49,6 +48,7 @@ class TableViewController: UITableViewController {
             DispatchQueue.main.async {
                 UIViewController.removeSpinner(spinner: activityView)
                 if success {
+                    StudentInformation.sharedInstance().studentsInformation = studentLocations as! [ParseStudentLocation]
                     self.tableView.reloadData()
                 }
                 else {
@@ -65,11 +65,11 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ParseClient.sharedInstance().studentLocations.count
+        return StudentInformation.sharedInstance().studentsInformation.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let studentLocation = ParseClient.sharedInstance().studentLocations[indexPath.row]
+        let studentLocation = StudentInformation.sharedInstance().studentsInformation[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentLocationCell", for: indexPath)
         
         cell.textLabel?.text = "\(studentLocation.firstName ?? "") \(studentLocation.lastName ?? "")"
@@ -79,9 +79,13 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let studentLocation = ParseClient.sharedInstance().studentLocations[indexPath.row]
-        if let mediaURL = studentLocation.mediaURL, Helper.app.verifyUrl(urlString: mediaURL) {
-            UIApplication.shared.open(URL(string: mediaURL)!, options: [:], completionHandler: nil)
+        let studentLocation = StudentInformation.sharedInstance().studentsInformation[indexPath.row]
+        
+        guard let mediaURL = studentLocation.mediaURL, Helper.app.verifyUrl(urlString: mediaURL) else {
+            Helper.app.displayMessage(message: "invalid URL", vc: self)
+            return
         }
+        
+        UIApplication.shared.open(URL(string: mediaURL)!, options: [:], completionHandler: nil)
     }
 }
